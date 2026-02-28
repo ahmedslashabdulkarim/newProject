@@ -5,8 +5,8 @@ Dieses Projekt implementiert eine robuste Passwortvalidierung in Java. Die Entwi
 
 Passwort‑Policy (Basis)
 Ein Passwort ist gültig, wenn alle folgenden Bedingungen erfüllt sind:
-
-mindestens 8 Zeichen
+ 
+mindestens 8 Zeichen 
 
 mindestens eine Ziffer (0–9)
 
