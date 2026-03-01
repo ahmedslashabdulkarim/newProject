@@ -1,21 +1,44 @@
-- README‑Inhalt für dein passwort-validation -
+Dieses Projekt dient als Übungsprojekt für TDD, Maven und CI/CD.
 
-Projekt: Password Validator (Maven, Java 23)
-Dieses Projekt implementiert eine robuste Passwortvalidierung in Java. Die Entwicklung erfolgt testgetrieben (TDD) mit JUnit 5 und wird automatisch über GitHub Actions getestet.
+# Password Validation – TDD, Maven, JUnit 5
 
-Passwort‑Policy (Basis)
-Ein Passwort ist gültig, wenn alle folgenden Bedingungen erfüllt sind:
- 
-mindestens 8 Zeichen 
+Dieses Projekt implementiert eine Passwortvalidierung gemäß definierter Policy.  
+Die Entwicklung erfolgte testgetrieben (TDD) mit JUnit 5.  
+Der Code ist vollständig ohne Regex implementiert (Schleifen + Character‑Methoden).
 
-mindestens eine Ziffer (0–9)
+---
 
-mindestens ein Großbuchstabe
+## Passwort‑Policy
 
-mindestens ein Kleinbuchstabe
+### Basis‑Kriterien
+Ein Passwort ist gültig, wenn:
 
-nicht in der internen Liste häufiger/schwacher Passwörter enthalten
-(Vergleich erfolgt in Kleinbuchstaben und getrimmt)
+- mindestens **8 Zeichen**  
+- mindestens **eine Ziffer**  
+- mindestens **ein Großbuchstabe**  
+- mindestens **ein Kleinbuchstabe**  
+- **nicht** in der Liste häufiger Passwörter:  
+  `password`, `passwort1`, `12345678`, `aa345678`
 
-Nicht enthalten:  
-Keine Sonderzeichenpflicht, keine Mindestanzahl von Zeichengruppen.
+### Bonus (optional)
+- mindestens ein Sonderzeichen aus: `!@#$%^&*()-_+=?.,;:`
+- mindestens 3 von 4 Zeichengruppen erfüllt
+
+
+---
+## Projektstruktur
+
+GitHub Actions Workflow:
+.github/workflows/ci.yml
+
+Automatisch ausführen:
+mvn -B clean verify
+
+---
+## Build & Test
+
+bash
+mvn clean verify
+bash
+mvn package
+
