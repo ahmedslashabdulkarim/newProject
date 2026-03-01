@@ -1,4 +1,4 @@
-Dieses Projekt dient als Übungsprojekt für TDD, Maven und CI/CD.
+This is a Projekt for TDD, Maven und CI/CD.
 
 # Password Validation – TDD, Maven, JUnit 5
 
