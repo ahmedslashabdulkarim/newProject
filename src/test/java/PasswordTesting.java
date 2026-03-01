@@ -1,76 +1,78 @@
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
+// diese Testklasse prüft jede Methode einzeln.
 public class PasswordTesting {
 
     @Test
-    void characters8_whenEmpty_throwFalse() {
-        //GIVEN
-        String password = "";
-        //WHEN
-        boolean result = PasswordValidationTesting.isNullCharactersLong(password);
-        //THEN
-        Assertions.assertFalse(result);
+    void testMinLengthNull() {
+        // Null sollte immer false sein.
+        assertFalse(PasswordValidationTesting.hasMinLength(null, 8));
     }
 
     @Test
-    void characters7_whenEmpty_throwFalse() {
-        //GIVEN
-        String password = "1111117";
-        //WHEN
-        boolean result = PasswordValidationTesting.is7CharactersLong(password);
-        //THEN
-        Assertions.assertFalse(result);
+    void testMinLength7() {
+        // 7 Zeichen ist zu kurz.
+        assertFalse(PasswordValidationTesting.hasMinLength("1234567", 8));
     }
 
     @Test
-        void characters8_whenEmpty_throw8True() {
-        //GIVEN
-        String password = "11111118";
-        //WHEN
-        boolean result = PasswordValidationTesting.is8CharactersLong(password);
-        //THEN
-        Assertions.assertTrue(result);
+    void testMinLength8() {
+        // 8 Zeichen ist gültig.
+        assertTrue(PasswordValidationTesting.hasMinLength("12345678", 8));
     }
 
     @Test
-    void characters9_whenEmpty_throw8True() {
-        //GIVEN
-        String password = "111111119";
-        //WHEN
-        boolean result = PasswordValidationTesting.is9CharactersLong(password);
-        //THEN
-        Assertions.assertTrue(result);
+    void testContainsDigitEmpty() {
+        // Leerer String, keine Ziffer.
+        assertFalse(PasswordValidationTesting.containsDigit(""));
     }
 
     @Test
-    void containsDigit_whenEmpty_throwFalse() {
-        //GIVEN
-        String password = "";
-        //WHEN
-        boolean result = PasswordValidationTesting.containsDigit(password);
-        //THEN
-        Assertions.assertFalse(result);
+    void testContainsDigitOne() {
+        // Enthält eine Ziffer - true.
+        assertTrue(PasswordValidationTesting.containsDigit("a1"));
     }
 
     @Test
-    void containsDigitOne_whenOne_throwTrue() {
-        //GIVEN
-        String password = "1";
-        //WHEN
-        boolean result = PasswordValidationTesting.containsDigitOne(password);
-        //THEN
-        Assertions.assertTrue(result);
+    void testContainsDigitNone() {
+        // Keine Ziffer - false.
+        assertFalse(PasswordValidationTesting.containsDigit("abcdef"));
     }
 
     @Test
-    void containsDigitOne_whenText_throwTrue() {
-        //GIVEN
-        String password = "11wiegehts";
-        //WHEN
-        boolean result = PasswordValidationTesting.containsDigitText(password);
-        //THEN
-        Assertions.assertTrue(result);
+    void testUpperLowerMixed() {
+        // Gross- und Kleinbuchstaben vorhanden.
+        assertTrue(PasswordValidationTesting.containsUpperAndLower("Abc"));
     }
-//
+
+    @Test
+    void testUpperLowerOnlyUpper() {
+        // Nur Grossbuchstaben - false.
+        assertFalse(PasswordValidationTesting.containsUpperAndLower("ABC"));
+    }
+
+    @Test
+    void testCommonPassword() {
+        // Passwort ist in der Liste - true.
+        assertTrue(PasswordValidationTesting.isCommonPassword("password"));
+    }
+
+    @Test
+    void testNotCommonPassword() {
+        // Nicht in der Liste - false.
+        assertFalse(PasswordValidationTesting.isCommonPassword("Abcdef1g"));
+    }
+
+    @Test
+    void testIsValid() {
+        // Ein gültiges Passwort.
+        assertTrue(PasswordValidationTesting.isValid("Abcdef1g"));
+    }
+
+    @Test
+    void testIsValidMissingDigit() {
+        // Keine Ziffer - ungültig.
+        assertFalse(PasswordValidationTesting.isValid("Abcdefgh"));
+    }
 }
