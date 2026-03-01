@@ -42,5 +42,35 @@ public class PasswordTesting {
         //THEN
         Assertions.assertTrue(result);
     }
+
+    @Test
+    void containsDigit_whenEmpty_throwFalse() {
+        //GIVEN
+        String password = "";
+        //WHEN
+        boolean result = PasswordValidationTesting.containsDigit(password);
+        //THEN
+        Assertions.assertFalse(result);
+    }
+
+    @Test
+    void containsDigitOne_whenOne_throwTrue() {
+        //GIVEN
+        String password = "1";
+        //WHEN
+        boolean result = PasswordValidationTesting.containsDigitOne(password);
+        //THEN
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    void containsDigitOne_whenText_throwTrue() {
+        //GIVEN
+        String password = "11wiegehts";
+        //WHEN
+        boolean result = PasswordValidationTesting.containsDigitText(password);
+        //THEN
+        Assertions.assertTrue(result);
+    }
 //
 }
