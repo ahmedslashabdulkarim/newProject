@@ -15,6 +15,7 @@ public class PasswordValidationTesting {
     public static boolean is7CharactersLong(String password) {
         return false;
     }
+    //
 
     public static boolean is9CharactersLong(String password) {
         return true;
